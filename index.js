@@ -15,6 +15,10 @@ app.get("/login", (req, res) => {
     res.sendFile(__dirname + '/src/login.html')
 })
 
-app.listen(3000, () => {
-    console.log("Momma! I did it!")
+app.get("/portfolio-details", (req, res) => {
+    res.sendFile(__dirname + '/src/portfolio-details.html')
+})
+
+app.listen(6969, () => {
+    console.log("Log onto `http://localhost:6969/` to see full website")
 })
