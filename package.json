@@ -1,0 +1,15 @@
+{
+  "name": "psychologicalwellbeing",
+  "version": "1.2.0",
+  "description": "This is my 2nd Official Project. Designed to determine your psychology.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "npm-shubham",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongodb": "^5.8.1"
+  }
+}

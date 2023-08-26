@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html ng-app="questionnaireApp">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Questionnaire</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- Favicons -->
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="vendor/aos/aos.css" rel="stylesheet">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top header-inner-pages">
+    <div class="container d-flex align-items-center">
+      <a href="index.html"><i class="iconify-mainicon"></i> </a>
+      <h1 class="logo me-auto"><a href="/">Psychological <br> Wellbeing</a></h1>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto" href="/">Home</a></li>
+          <li><a class="nav-link scrollto active" href="/#self-assesment">Self-Assesment</a></li>
+          <li><a class="nav-link scrollto" href="/#services">Resource</a></li>
+          <li><a class="nav-link scrollto" href="/#portfolio">Testimonies</a></li>
+          <li><a class="nav-link scrollto" href="/#faq">FAQ</a></li>
+          <li><a class="nav-link scrollto" href="/#contact">Contact</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownMenuLink"
+              role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" class="rounded-circle"
+                height="22" alt="Avatar" loading="lazy" />
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li>
+                <a class="dropdown-item" href="profile">My profile</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="login">Logout</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+  
+  <main id="main"> 
+    <section id="faq" class="faq section-bg">
+      <!-- Add the ng-controller directive to link the controller to this section -->
+      <div ng-controller="QuestionnaireController" class="container">
+        <!-- Loop through the groups -->
+        <div ng-repeat="group in groups">
+          <div class="section-title"><br><br><br>
+            <h2>{{ group.name }}</h2>
+          </div>
+          <div class="faq-list">
+            <!-- Loop through the questions in the current group -->
+            <div class="question" ng-repeat="question in group.questions">
+              <h2>{{ question.text }}</h2>
+              Disagree  <input type="radio" ng-model="question.selectedOption" ng-change="calculatePoints()" ng-repeat="option in question.options" ng-value="option">Agree
+              <p><label>{{ option.text }}</label><br></p>
+            </div>
+            <!-- Display total points for the current group -->
+            <p>Points for {{ group.name }}: <span ng-bind="group.totalPoints"></span></p>
+          </div>
+        </div>
+        <!-- "Save" button to save all the scores -->
+        <center><button ng-click="saveAssessments()" class="button">Save All Scores</button></center>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
